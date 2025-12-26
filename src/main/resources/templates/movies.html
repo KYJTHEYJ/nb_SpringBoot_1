@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>영화 제목 출력</title>
+</head>
+<body>
+  <!-- 여기서 th는 Thymeleaf 전용 태그 -->
+  <h1 th:text="${movieTitle}"></h1>
+  <a th:href="@{/movies}">다른 영화 찾기</a>
+</body>
+</html>
