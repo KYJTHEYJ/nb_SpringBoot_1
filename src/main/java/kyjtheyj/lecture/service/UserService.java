@@ -20,13 +20,23 @@ public class UserService {
         User user = new User(request.name(), request.email(), request.address());
         User savedUser = userRepository.save(user);
 
-        return new CreateUserResponse(savedUser.getId(), savedUser.getName(), savedUser.getEmail(), savedUser.getAddress());
+        return new CreateUserResponse(savedUser.getId()
+                , savedUser.getName()
+                , savedUser.getEmail()
+                , savedUser.getAddress()
+                , savedUser.getCreatedAt()
+                , savedUser.getUpdatedAt());
     }
 
     @Transactional(readOnly = true)
     public GetOneUserResponse getOne(Long id) {
         User findUser = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("없는 유저!"));
-        return new GetOneUserResponse(findUser.getId(), findUser.getName(), findUser.getEmail(), findUser.getAddress());
+        return new GetOneUserResponse(findUser.getId()
+                , findUser.getName()
+                , findUser.getEmail()
+                , findUser.getAddress()
+                , findUser.getCreatedAt()
+                , findUser.getUpdatedAt());
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +44,12 @@ public class UserService {
         List<User> all = userRepository.findAll();
         List<GetOneUserResponse> responses = new ArrayList<>();
         for (User user : all) {
-            responses.add(new GetOneUserResponse(user.getId(), user.getName(), user.getEmail(), user.getAddress()));
+            responses.add(new GetOneUserResponse(user.getId()
+                    , user.getName()
+                    , user.getEmail()
+                    , user.getAddress()
+                    , user.getCreatedAt()
+                    , user.getUpdatedAt()));
         }
 
         return responses;
@@ -48,7 +63,12 @@ public class UserService {
 
         findUser.update(request.name(), request.email(), request.address());
 
-        return new UpdateUserResponse(findUser.getId(), findUser.getName(), findUser.getEmail(), findUser.getAddress());
+        return new UpdateUserResponse(findUser.getId()
+                , findUser.getName()
+                , findUser.getEmail()
+                , findUser.getAddress()
+                , findUser.getCreatedAt()
+                , findUser.getUpdatedAt());
     }
 
     @Transactional

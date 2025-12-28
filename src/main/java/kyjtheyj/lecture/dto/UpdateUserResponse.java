@@ -1,4 +1,6 @@
 package kyjtheyj.lecture.dto;
 
-public record UpdateUserResponse(Long id, String name, String email, String address) {
+import java.time.LocalDateTime;
+
+public record UpdateUserResponse(Long id, String name, String email, String address, LocalDateTime createAt, LocalDateTime updateAt) {
 }
